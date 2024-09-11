@@ -1,0 +1,9 @@
+userInfo : {
+  "_id": "098",
+  "name": "Shreyas Shinde",
+  "title": "administrator",
+  "email": "admin@gmail.com",
+  "isActive": true,
+  "isAdmin": true,
+  "role": "Admin"
+}

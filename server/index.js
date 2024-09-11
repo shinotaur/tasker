@@ -37,6 +37,7 @@ app.use(
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
+    'Access-Control-Allow-Origin': 'https://tasker-shrey.netlify.app',
   })
 );
 

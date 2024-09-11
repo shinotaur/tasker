@@ -24,7 +24,7 @@ const Login = () => {
   const submitHandler = async (data) => {
     try {
       const res = await login(data).unwrap();
-
+      data.preventDefault();
       dispatch(setCredentials(res));
       navigate('/');
     } catch (error) {

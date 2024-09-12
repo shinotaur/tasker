@@ -9,13 +9,14 @@ import {
 import { PRIORITY_STYLES, TASK_TYPE } from '../utils';
 import clsx from 'clsx';
 import Button from '../components/Button';
-import { tasks } from '../assets/data';
 import Title from '../components/Title';
 import ConfirmationDialog from '../components/Dialogs';
-import { useGetAllTasksQuery, useDeleteRestoreTaskMutation } from '../redux/slices/api/taskApiSlice';
+import {
+  useGetAllTasksQuery,
+  useDeleteRestoreTaskMutation,
+} from '../redux/slices/api/taskApiSlice';
 import Loading from '../components/Loading';
 import { toast } from 'sonner';
-
 
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
@@ -30,59 +31,58 @@ const Trash = () => {
   const [type, setType] = useState('delete');
   const [selected, setSelected] = useState('');
 
-  const {data, isLoading} = useGetAllTasksQuery({
+  const { data, isLoading } = useGetAllTasksQuery({
     strQuery: '',
     isTrashed: 'true',
-    search: ''
+    search: '',
   });
 
   const [deleteRestoreTask] = useDeleteRestoreTaskMutation();
 
-  const deleteRestoreHandler = async() => {
+  const deleteRestoreHandler = async () => {
     try {
       let res;
       switch (type) {
         case 'delete':
           res = await deleteRestoreTask({
             actionType: 'delete',
-            id: selected
-          }).unwrap()
+            id: selected,
+          }).unwrap();
           break;
 
         case 'deleteAll':
           res = await deleteRestoreTask({
             actionType: 'deleteAll',
-            id: selected
-          }).unwrap()
+            id: selected,
+          }).unwrap();
           break;
 
         case 'restore':
           res = await deleteRestoreTask({
             actionType: 'restore',
-            id: selected
-          }).unwrap()
+            id: selected,
+          }).unwrap();
           break;
 
         case 'restoreAll':
           res = await deleteRestoreTask({
             actionType: 'restoreAll',
-            id: selected
-          }).unwrap()
+            id: selected,
+          }).unwrap();
           break;
       }
-      console.log(res)
+      console.log(res);
       setTimeout(() => {
         setOpenDialog(false);
         window.location.reload();
         refetch();
-      },500)
+      }, 500);
 
       toast.success(res?.message || 'Task deleted successfully');
-
     } catch (error) {
       toast.error(error.message || 'An error occured');
     }
-  }
+  };
 
   const deleteAllClick = () => {
     setType('deleteAll');
@@ -109,14 +109,13 @@ const Trash = () => {
     setOpenDialog(true);
   };
 
-  if(isLoading){
-  return (
-    <div className='py-10'>
+  if (isLoading) {
+    return (
+      <div className='py-10'>
         <Loading />
-
-    </div>
-  )
-}
+      </div>
+    );
+  }
 
   const TableHeader = () => (
     <thead className='border-b border-gray-300'>

@@ -10,7 +10,6 @@ import Tabs from '../components/Tabs';
 import TaskTitle from '../components/TaskTitle';
 import BoardView from '../components/BoardView';
 import Table from '../components/task/Table';
-import { tasks } from '../assets/data';
 import AddTask from '../components/task/AddTask';
 import { useGetAllTasksQuery } from '../redux/slices/api/taskApiSlice';
 

@@ -14,7 +14,6 @@ import {
 import { RxActivityLog } from 'react-icons/rx';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
-import { tasks } from '../assets/data';
 import Tabs from '../components/Tabs';
 import { PRIORITY_STYLES, TASK_TYPE, getInitials } from '../utils';
 import Loading from '../components/Loading';
